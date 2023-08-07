@@ -23,10 +23,15 @@ $args = array(
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-    while ($query->have_posts()) {
-        $query->the_post();
+    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID()
+
+
         // Your post content display code here
-        the_title( '<h3>', '</h3>' ); 
+        ?>
+        <h2> <?php the_title() ?></h2>
+        <h2> <?php $Pid; ?></h2> <hr/>
+
+        <?php
  
     }
     wp_reset_postdata(); // Reset post data to the main query
