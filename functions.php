@@ -405,6 +405,25 @@ function cptui_register_my_taxes() {
 add_action( 'init', 'cptui_register_my_taxes' );
 
 
+$post_id = 123;
+
+function get_provider_terms ($id , $term) {
+
+	// Get the post terms (categories or tags)
+$terms = get_the_terms($id, $term); // Change 'category' to 'post_tag' for tags
+
+if ($terms && !is_wp_error($terms)) {
+    foreach ($terms as $term) {
+        echo $term->name . ', ';
+    }
+}
+
+
+
+}
+
+
+
 
 
 
