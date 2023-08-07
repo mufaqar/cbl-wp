@@ -3,6 +3,10 @@
 
 get_header();
 
+$query = $_REQUEST['zipcode'];
+
+
+
 
 $args = array(
     'post_type' => 'providers',    
@@ -10,8 +14,8 @@ $args = array(
         array(
             'key' => 'internet_serices',
            // 'value' => array('15401'),
-            'value' => '15401',
-            'compare' => 'EXISTS',
+            'value' => $query,
+            'compare' => 'LIKE'
        ),
     ),
 );
