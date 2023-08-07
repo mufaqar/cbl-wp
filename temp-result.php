@@ -29,7 +29,7 @@ if ($query->have_posts()) {
         // Your post content display code here
         ?>
         <h2> <?php the_title() ?></h2>
-        <h2> <?php $Pid; ?></h2> <hr/>
+        <h2> <?php echo $Pid; ?></h2> <hr/>
 
         <?php
  
