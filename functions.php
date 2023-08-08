@@ -155,7 +155,6 @@ require get_template_directory() . '/inc/template-functions.php';
 
 
 
-
 function cptui_register_my_cpts() {
 
 	/**
@@ -163,12 +162,12 @@ function cptui_register_my_cpts() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "Providers", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "Provider", "custom-post-type-ui" ),
+		"name" => esc_html__( "Providers", "cbl_theme" ),
+		"singular_name" => esc_html__( "Provider", "cbl_theme" ),
 	];
 
 	$args = [
-		"label" => esc_html__( "Providers", "custom-post-type-ui" ),
+		"label" => esc_html__( "Providers", "cbl_theme" ),
 		"labels" => $labels,
 		"description" => "",
 		"public" => true,
@@ -202,12 +201,12 @@ function cptui_register_my_cpts() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "Zone", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "Zone", "custom-post-type-ui" ),
+		"name" => esc_html__( "Zone", "cbl_theme" ),
+		"singular_name" => esc_html__( "Zone", "cbl_theme" ),
 	];
 
 	$args = [
-		"label" => esc_html__( "Zone", "custom-post-type-ui" ),
+		"label" => esc_html__( "Zone", "cbl_theme" ),
 		"labels" => $labels,
 		"description" => "",
 		"public" => true,
@@ -224,18 +223,32 @@ function cptui_register_my_cpts() {
 		"exclude_from_search" => false,
 		"capability_type" => "post",
 		"map_meta_cap" => true,
-		"hierarchical" => true,
+		"hierarchical" => false,
 		"can_export" => false,
 		"rewrite" => [ "slug" => "area_zone", "with_front" => true ],
 		"query_var" => true,
 		"supports" => [ "title", "editor", "thumbnail" ],
 		"show_in_graphql" => true,
+		"graphql_single_name" => "Zone",
+		"graphql_plural_name" => "Zone",
 	];
 
 	register_post_type( "area_zone", $args );
 }
 
 add_action( 'init', 'cptui_register_my_cpts' );
+
+
+
+
+
+
+
+
+
+
+
+
 
 function cptui_register_my_taxes() {
 
