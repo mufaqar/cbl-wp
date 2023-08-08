@@ -266,7 +266,7 @@ function cptui_register_my_taxes() {
 	// 	"rest_namespace" => "wp/v2",
 	// 	"show_in_quick_edit" => false,
 	// 	"sort" => false,
-	// 	"show_in_graphql" => tr,
+	// 	"show_in_graphql" => true,
 	// ];
 	// register_taxonomy( "zone_country", [ "area_zone" ], $args );
 
@@ -299,7 +299,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => tr,
+		"show_in_graphql" => true,
 	];
 	register_taxonomy( "zone_city", [ "area_zone" ], $args );
 
@@ -332,7 +332,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => tr,
+		"show_in_graphql" => true,
 	];
 	register_taxonomy( "zone_state", [ "area_zone" ], $args );
 
@@ -365,7 +365,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => tr,
+		"show_in_graphql" => true,
 	];
 	register_taxonomy( "zone_code", [ "area_zone" ], $args );
 
@@ -398,7 +398,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => tr,
+		"show_in_graphql" => true,
 	];
 	register_taxonomy( "zone_county", [ "area_zone" ], $args );
 }
