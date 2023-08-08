@@ -191,6 +191,8 @@ function cptui_register_my_cpts() {
 		"query_var" => true,
 		"supports" => [ "title", "editor", "thumbnail", "page-attributes" ],
 		"show_in_graphql" => true,
+		"graphql_single_name" => "Provider",
+		"graphql_plural_name" => "Providers",
 	];
 
 	register_post_type( "providers", $args );
