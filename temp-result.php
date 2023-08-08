@@ -3,7 +3,10 @@
 
 get_header();
 
-$query = $_REQUEST['zipcode'];
+$zip_query = $_REQUEST['zipcode'];
+
+
+
 
 
 
@@ -14,7 +17,7 @@ $args = array(
         array(
             'key' => 'internet_serices',
            // 'value' => array('15401'),
-            'value' => $query,
+            'value' => $zip_query,
             'compare' => 'LIKE'
        ),
     ),
@@ -23,7 +26,23 @@ $args = array(
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID(); $Zid = get_the_title($Pid);
+    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID(); $Zid = get_the_title($Pid);      
+
+
+        $post_title = $zip_query; 
+        $post_type = 'area_zone'; 
+        $post = get_page_by_title( $post_title, OBJECT, $post_type );
+        if ( $post ) {
+            $post_id = $post->ID;
+        } else {
+            echo 'Post not found.';
+        }
+
+
+
+
+
+        $zone_city = get_provider_terms($post_id,'zone_city');
 
 
      
@@ -34,10 +53,18 @@ if ($query->have_posts()) {
         <h2> <?php the_title() ?></h2>
         <h2> <?php echo $Pid; ?></h2>
 
-        City : City | State : state  | 	Area Code  |   County
+        City : <?php echo $zone_city ?> | State : state  | 	Area Code  |   County
 
-        <h2> <?php echo $Zid; ?></h2>
+      <?php
+
+
+      
+
+      
         
+
+        ?>
+             
         
         <hr/>
 
