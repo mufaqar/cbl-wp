@@ -190,7 +190,7 @@ function cptui_register_my_cpts() {
 		"rewrite" => [ "slug" => "providers", "with_front" => true ],
 		"query_var" => true,
 		"supports" => [ "title", "editor", "thumbnail", "page-attributes" ],
-		"show_in_graphql" => false,
+		"show_in_graphql" => true,
 	];
 
 	register_post_type( "providers", $args );
@@ -227,7 +227,7 @@ function cptui_register_my_cpts() {
 		"rewrite" => [ "slug" => "area_zone", "with_front" => true ],
 		"query_var" => true,
 		"supports" => [ "title", "editor", "thumbnail" ],
-		"show_in_graphql" => false,
+		"show_in_graphql" => true,
 	];
 
 	register_post_type( "area_zone", $args );
@@ -266,7 +266,7 @@ function cptui_register_my_taxes() {
 	// 	"rest_namespace" => "wp/v2",
 	// 	"show_in_quick_edit" => false,
 	// 	"sort" => false,
-	// 	"show_in_graphql" => false,
+	// 	"show_in_graphql" => tr,
 	// ];
 	// register_taxonomy( "zone_country", [ "area_zone" ], $args );
 
@@ -299,7 +299,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => false,
+		"show_in_graphql" => tr,
 	];
 	register_taxonomy( "zone_city", [ "area_zone" ], $args );
 
@@ -332,7 +332,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => false,
+		"show_in_graphql" => tr,
 	];
 	register_taxonomy( "zone_state", [ "area_zone" ], $args );
 
@@ -365,7 +365,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => false,
+		"show_in_graphql" => tr,
 	];
 	register_taxonomy( "zone_code", [ "area_zone" ], $args );
 
@@ -398,7 +398,7 @@ function cptui_register_my_taxes() {
 		"rest_namespace" => "wp/v2",
 		"show_in_quick_edit" => false,
 		"sort" => false,
-		"show_in_graphql" => false,
+		"show_in_graphql" => tr,
 	];
 	register_taxonomy( "zone_county", [ "area_zone" ], $args );
 }
@@ -434,6 +434,3 @@ $meta_value_array = array('15401','19930','19939','19945','19947','19951','19958
 $post_id = 11911; 
 $meta_key = 'internet_serices';
 //update_post_meta($post_id, $meta_key, $meta_value_array);
-
-
-
