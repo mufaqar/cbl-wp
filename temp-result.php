@@ -23,7 +23,7 @@ $args = array(
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID();
+    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID(); $Zid = get_the_title($Pid);
 
 
      
@@ -35,6 +35,8 @@ if ($query->have_posts()) {
         <h2> <?php echo $Pid; ?></h2>
 
         City : City | State : state  | 	Area Code  |   County
+
+        <h2> <?php echo $Zid; ?></h2>
         
         
         <hr/>
