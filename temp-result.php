@@ -26,9 +26,13 @@ $args = array(
 $query = new WP_Query($args);
 
 if ($query->have_posts()) {
-    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID(); $Zid = get_the_title($Pid);      
+    while ($query->have_posts()) { $query->the_post(); $Pid = get_the_ID(); 
+        ?>
 
+        
+<h2> <?php the_title() ?></h2>
 
+        <?php
         $post_title = $zip_query; 
         $post_type = 'area_zone'; 
         $post = get_page_by_title( $post_title, OBJECT, $post_type );
@@ -38,22 +42,21 @@ if ($query->have_posts()) {
             echo 'Post not found.';
         }
 
+        $zone_city = get_provider_terms($post_id,'zone_city');   
+        $zone_state = get_provider_terms($post_id,'zone_state');   
+        $zone_code = get_provider_terms($post_id,'zone_code');   
+        $zone_county = get_provider_terms($post_id,'zone_county');   
+        
+        
 
-
-
-
-        $zone_city = get_provider_terms($post_id,'zone_city');
-
-
-     
-
-
-        // Your post content display code here
+       
         ?>
-        <h2> <?php the_title() ?></h2>
-        <h2> <?php echo $Pid; ?></h2>
 
-        City : <?php echo $zone_city ?> | State : state  | 	Area Code  |   County
+            
+              
+        
+
+        City : <?php echo $zone_city ?> | State : <?php echo $zone_state ?>  | 	Area Code <?php echo $zone_code ?>    |   County <?php echo $zone_county ?>  
 
       <?php
 
