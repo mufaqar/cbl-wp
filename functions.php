@@ -242,79 +242,40 @@ add_action( 'init', 'cptui_register_my_cpts' );
 
 
 
-
-
-
-
-
-
-
-
-function cptui_register_my_taxes() {
-
-	/**
-	 * Taxonomy: Country.
-	 */
-
-	// $labels = [
-	// 	"name" => esc_html__( "Country", "custom-post-type-ui" ),
-	// 	"singular_name" => esc_html__( "Country", "custom-post-type-ui" ),
-	// ];
-
-	
-	// $args = [
-	// 	"label" => esc_html__( "Country", "custom-post-type-ui" ),
-	// 	"labels" => $labels,
-	// 	"public" => true,
-	// 	"publicly_queryable" => true,
-	// 	"hierarchical" => true,
-	// 	"show_ui" => true,
-	// 	"show_in_menu" => true,
-	// 	"show_in_nav_menus" => true,
-	// 	"query_var" => true,
-	// 	"rewrite" => [ 'slug' => 'zone_country', 'with_front' => true, ],
-	// 	"show_admin_column" => false,
-	// 	"show_in_rest" => true,
-	// 	"show_tagcloud" => false,
-	// 	"rest_base" => "zone_country",
-	// 	"rest_controller_class" => "WP_REST_Terms_Controller",
-	// 	"rest_namespace" => "wp/v2",
-	// 	"show_in_quick_edit" => false,
-	// 	"sort" => false,
-	// 	"show_in_graphql" => true,
-	// ];
-	// register_taxonomy( "zone_country", [ "area_zone" ], $args );
+	function cptui_register_my_taxes() {
 
 	/**
 	 * Taxonomy: City.
 	 */
 
 	$labels = [
-		"name" => esc_html__( "City", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "City", "custom-post-type-ui" ),
+		"name" => esc_html__( "City", "cbl_theme" ),
+		"singular_name" => esc_html__( "City", "cbl_theme" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "City", "custom-post-type-ui" ),
+		"label" => esc_html__( "City", "cbl_theme" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
-		"hierarchical" => true,
+		"hierarchical" => false,
 		"show_ui" => true,
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"query_var" => true,
 		"rewrite" => [ 'slug' => 'zone_city', 'with_front' => true, ],
-		"show_admin_column" => true,
+		"show_admin_column" => false,
 		"show_in_rest" => true,
 		"show_tagcloud" => false,
 		"rest_base" => "zone_city",
 		"rest_controller_class" => "WP_REST_Terms_Controller",
 		"rest_namespace" => "wp/v2",
-		"show_in_quick_edit" => false,
-		"sort" => false,
+		"show_in_quick_edit" => true,
+		"sort" => true,
 		"show_in_graphql" => true,
+		"graphql_single_name" => "City",
+		"graphql_plural_name" => "Cities",
 	];
 	register_taxonomy( "zone_city", [ "area_zone" ], $args );
 
@@ -323,97 +284,68 @@ function cptui_register_my_taxes() {
 	 */
 
 	$labels = [
-		"name" => esc_html__( "State", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "State", "custom-post-type-ui" ),
+		"name" => esc_html__( "State", "cbl_theme" ),
+		"singular_name" => esc_html__( "State", "cbl_theme" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "State", "custom-post-type-ui" ),
+		"label" => esc_html__( "State", "cbl_theme" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
-		"hierarchical" => true,
+		"hierarchical" => false,
 		"show_ui" => true,
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"query_var" => true,
 		"rewrite" => [ 'slug' => 'zone_state', 'with_front' => true, ],
-		"show_admin_column" => true,
+		"show_admin_column" => false,
 		"show_in_rest" => true,
 		"show_tagcloud" => false,
 		"rest_base" => "zone_state",
 		"rest_controller_class" => "WP_REST_Terms_Controller",
 		"rest_namespace" => "wp/v2",
-		"show_in_quick_edit" => false,
-		"sort" => false,
+		"show_in_quick_edit" => true,
+		"sort" => true,
 		"show_in_graphql" => true,
+		"graphql_single_name" => "State",
+		"graphql_plural_name" => "States",
 	];
 	register_taxonomy( "zone_state", [ "area_zone" ], $args );
-
-	/**
-	 * Taxonomy: Area Code.
-	 */
-
-	$labels = [
-		"name" => esc_html__( "Area Code", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "Area Code", "custom-post-type-ui" ),
-	];
-
-	
-	$args = [
-		"label" => esc_html__( "Area Code", "custom-post-type-ui" ),
-		"labels" => $labels,
-		"public" => true,
-		"publicly_queryable" => true,
-		"hierarchical" => true,
-		"show_ui" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"query_var" => true,
-		"rewrite" => [ 'slug' => 'zone_code', 'with_front' => true, ],
-		"show_admin_column" => true,
-		"show_in_rest" => true,
-		"show_tagcloud" => false,
-		"rest_base" => "zone_code",
-		"rest_controller_class" => "WP_REST_Terms_Controller",
-		"rest_namespace" => "wp/v2",
-		"show_in_quick_edit" => false,
-		"sort" => false,
-		"show_in_graphql" => true,
-	];
-	register_taxonomy( "zone_code", [ "area_zone" ], $args );
 
 	/**
 	 * Taxonomy: County.
 	 */
 
 	$labels = [
-		"name" => esc_html__( "County", "custom-post-type-ui" ),
-		"singular_name" => esc_html__( "County", "custom-post-type-ui" ),
+		"name" => esc_html__( "County", "cbl_theme" ),
+		"singular_name" => esc_html__( "County", "cbl_theme" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "County", "custom-post-type-ui" ),
+		"label" => esc_html__( "County", "cbl_theme" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
-		"hierarchical" => true,
+		"hierarchical" => false,
 		"show_ui" => true,
 		"show_in_menu" => true,
 		"show_in_nav_menus" => true,
 		"query_var" => true,
 		"rewrite" => [ 'slug' => 'zone_county', 'with_front' => true, ],
-		"show_admin_column" => true,
+		"show_admin_column" => false,
 		"show_in_rest" => true,
 		"show_tagcloud" => false,
 		"rest_base" => "zone_county",
 		"rest_controller_class" => "WP_REST_Terms_Controller",
 		"rest_namespace" => "wp/v2",
-		"show_in_quick_edit" => false,
-		"sort" => false,
+		"show_in_quick_edit" => true,
+		"sort" => true,
 		"show_in_graphql" => true,
+		"graphql_single_name" => "County",
+		"graphql_plural_name" => "Countys",
 	];
 	register_taxonomy( "zone_county", [ "area_zone" ], $args );
 }
