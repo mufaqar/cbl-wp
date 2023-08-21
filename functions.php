@@ -284,13 +284,13 @@ add_action( 'init', 'cptui_register_my_cpts' );
 	 */
 
 	$labels = [
-		"name" => esc_html__( "State Code", "cbl_theme" ),
+		"name" => esc_html__( "State", "cbl_theme" ),
 		"singular_name" => esc_html__( "State", "cbl_theme" ),
 	];
 
 	
 	$args = [
-		"label" => esc_html__( "State Code", "cbl_theme" ),
+		"label" => esc_html__( "State", "cbl_theme" ),
 		"labels" => $labels,
 		"public" => true,
 		"publicly_queryable" => true,
@@ -309,46 +309,10 @@ add_action( 'init', 'cptui_register_my_cpts' );
 		"show_in_quick_edit" => true,
 		"sort" => true,
 		"show_in_graphql" => true,
-		"graphql_single_name" => "State Code",
-		"graphql_plural_name" => "States Codes",
+		"graphql_single_name" => "State",
+		"graphql_plural_name" => "States",
 	];
 	register_taxonomy( "zone_state", [ "area_zone" ], $args );
-
-
-	/**
-	 * Taxonomy: State.
-	 */
-
-	$labels = [
-		"name" => esc_html__( "State Name", "cbl_theme" ),
-		"singular_name" => esc_html__( "State_name", "cbl_theme" ),
-	];
-
-	
-	$args = [
-		"label" => esc_html__( "State Name", "cbl_theme" ),
-		"labels" => $labels,
-		"public" => true,
-		"publicly_queryable" => true,
-		"hierarchical" => false,
-		"show_ui" => true,
-		"show_in_menu" => true,
-		"show_in_nav_menus" => true,
-		"query_var" => true,
-		"rewrite" => [ 'slug' => 'zone_state_name', 'with_front' => true, ],
-		"show_admin_column" => true,
-		"show_in_rest" => true,
-		"show_tagcloud" => false,
-		"rest_base" => "zone_state_name",
-		"rest_controller_class" => "WP_REST_Terms_Controller",
-		"rest_namespace" => "wp/v2",
-		"show_in_quick_edit" => true,
-		"sort" => true,
-		"show_in_graphql" => true,
-		"graphql_single_name" => "State Name",
-		"graphql_plural_name" => "States Names",
-	];
-	register_taxonomy( "zone_state_name", [ "area_zone" ], $args );
 
 	/**
 	 * Taxonomy: County.
