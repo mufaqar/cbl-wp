@@ -1,3 +1,10 @@
+// tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  plugins: [require('tailwindcss'), require('autoprefixer')],
-};
+  content: ["./template-parts/*.{php,html,js}","./*.{php,html,js}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
