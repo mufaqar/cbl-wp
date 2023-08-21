@@ -406,6 +406,12 @@ if ($terms && !is_wp_error($terms)) {
 }
 
 
+function enqueue_theme_styles() {
+  wp_enqueue_style('tailwind', get_template_directory_uri() . '/src/styles/main.css');
+}
+add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
+
+
 
 
 
