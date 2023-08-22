@@ -38,38 +38,4 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
-	<header class="h-auto shadow-md py-5 font-[Roboto]">
-            <nav class="container mx-auto px-4 flex items-center justify-between ">
-                <div class="sm:hidden flex items-center">
-                    <button>
-                       <IoMdClose size={24} />
-                               
-                    </button>
-                </div>
-                <div class="sm:pl-0 pl-7 sm:w-1/3 w-full">
-                    <Link href="/">
-                        <Image src="<?php bloginfo('template_directory'); ?>/images/logo.png" alt="logo.svg" height="32px" width={300} class='max-h-[67px] object-cover' />
-                    </Link>
-                </div>
-                <div class="sm:w-2/3 w-full sm:justify-end sm:static absolute left-0 sm:py-0 py-7 sm:px-0 px-5 flex items-center ">
-                    <ul class="flex sm:flex-row flex-col sm:items-center md:gap-[3vw] gap-5">
-                        <li>
-                            <Link href="#" class='text-base font-normal text-[#215690] hover:text-[#ef9831] font-[Roboto]'>TV</Link>
-                        </li>
-                        <li>
-                            <Link href="#" class='text-base font-normal text-[#215690] hover:text-[#ef9831] font-[Roboto]'>Internet</Link>
-                        </li>
-                        <li>
-                            <Link href="/providers" class='text-base font-normal text-[#215690] hover:text-[#ef9831] font-[Roboto]'>Providers</Link>
-                        </li>
-                        <li>
-                            <Link href="#" class='text-base font-normal text-[#215690] hover:text-[#ef9831] font-[Roboto]'>Resources</Link>
-                        </li>
-                        <Link href="tel:855-512-0491" class="items-center gap-2 text-[#ef9831] font-[Roboto] flex justify-end">
-                            <BsTelephoneFill size={18} />
-                            <span class="text-base font-normal">855-512-0491</span>
-                        </Link>
-                    </ul>
-                </div>
-            </nav>
-        </header>
+	

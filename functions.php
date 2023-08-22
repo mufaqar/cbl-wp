@@ -387,3 +387,55 @@ $meta_value_array = array('15401','19930','19939','19945','19947','19951','19958
 $post_id = 11911; 
 $meta_key = 'internet_serices';
 //update_post_meta($post_id, $meta_key, $meta_value_array);
+
+
+
+
+
+
+function custom_providers_endpoint( $request ) {
+    $meta_values = $request->get_param( 'meta_values' );
+    if ( empty( $meta_values ) || ! is_array( $meta_values ) ) {
+        return new WP_Error( 'invalid_request', 'Invalid meta_values parameter', array( 'status' => 400 ) );
+    }
+
+    $args = array(
+        'post_type'  => 'providers',
+        'meta_query' => array(
+            array(
+                'key'     => 'internet_serices',
+                'value'   => $meta_values,
+                'compare' => 'IN',
+            ),
+        ),
+    );
+
+    $query = new WP_Query( $args );
+
+    if ( $query->have_posts() ) {
+        $providers = array();
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            $provider_data = array(
+                'ID'      => get_the_ID(),
+                'title'   => get_the_title(),
+                'content' => get_the_content(),
+                // Add more fields as needed
+            );
+            $providers[] = $provider_data;
+        }
+        wp_reset_postdata();
+        return rest_ensure_response( $providers );
+    } else {
+        return new WP_Error( 'no_providers', 'No providers found', array( 'status' => 404 ) );
+    }
+}
+
+function register_custom_endpoints() {
+    register_rest_route( 'custom-api/v1', '/providers', array(
+        'methods'  => WP_REST_Server::READABLE,
+        'callback' => 'custom_providers_endpoint',
+    ) );
+}
+
+add_action( 'rest_api_init', 'register_custom_endpoints' );
