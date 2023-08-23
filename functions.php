@@ -392,23 +392,6 @@ $meta_key = 'internet_serices';
 
 
 
-
-function change_meta_keys_on_theme_activation() {
-    global $wpdb;
-
-    $old_meta_key = 'internet_serices';
-    $new_meta_key = 'internet_services';
-
-    $wpdb->update(
-        $wpdb->postmeta,
-        array('meta_key' => $new_meta_key),
-        array('meta_key' => $old_meta_key)
-    );
-}
-add_action('after_switch_theme', 'change_meta_keys_on_theme_activation');
-
-
-
 	function custom_rest_endpoint_init() {
 		register_rest_route('custom/v1', '/providers', array(
 			'methods' => 'GET',
