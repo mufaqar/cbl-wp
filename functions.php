@@ -409,45 +409,39 @@ $meta_key = 'internet_serices';
 
 
 
-function custom_rest_endpoint_init() {
-    register_rest_route('custom/v1', '/providers', array(
-        'methods' => 'GET',
-        'callback' => 'custom_rest_endpoint_callback',
-    ));
-}
-add_action('rest_api_init', 'custom_rest_endpoint_init');
+	function custom_rest_endpoint_init() {
+		register_rest_route('custom/v1', '/providers', array(
+			'methods' => 'GET',
+			'callback' => 'custom_rest_endpoint_callback',
+		));
+	}
+	add_action('rest_api_init', 'custom_rest_endpoint_init');
 
-function custom_rest_endpoint_callback($request) {
-    $params = $request->get_params();
-    $response = array();
-
-    if (!empty($params['internet_services'])) {
-        $values = explode(',', $params['internet_services']);
-        $values = array_map('trim', $values);
-
-        $meta_query = array(
-            'relation' => 'OR',
-        );
-
-        foreach ($values as $value) {
-            $meta_query[] = array(
-                'key'     => 'internet_services',
-                'value'   => $value,
-                'compare' => 'LIKE',
-            );
-        }
-
-        $query_args = array(
-            'post_type' => 'providers',
-            'meta_query' => $meta_query,
-        );
-
-        $providers = get_posts($query_args);
-        $response['providers'] = $providers;
-    }
-
-    return rest_ensure_response($response);
-}
+		function custom_rest_endpoint_callback($request) {
+		$params = $request->get_params();
+		$response = array();
+		if (!empty($params['internet_services'])) {
+			$values = explode(',', $params['internet_services']);
+			$values = array_map('trim', $values);
+			$meta_query = array(
+				'relation' => 'OR',
+			);
+			foreach ($values as $value) {
+				$meta_query[] = array(
+					'key'     => 'internet_services',
+					'value'   => $value,
+					'compare' => 'LIKE',
+				);
+			}
+			$query_args = array(
+				'post_type' => 'providers',
+				'meta_query' => $meta_query,
+			);
+			$providers = get_posts($query_args);
+			$response['providers'] = $providers;
+		}
+		return rest_ensure_response($response);
+	}
 
 
 
