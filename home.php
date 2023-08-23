@@ -5,39 +5,33 @@
 
 
 $query_args = [
-	'post_type' => 'providers', // Use your custom post type name
+	'post_type' => 'providers', 
 	'meta_query' => [
+		'relation' => 'OR',
+		[
+			'key'   => 'internet_serices',
+			'value' => '20001',
+			'compare' => 'LIKE', 
+		],
 		[
 			'key'   => 'internet_serices',
 			'value' => '01005',
-			'compare' => 'LIKE', // Modify this as needed
+			'compare' => 'LIKE', 
+		],
+		[
+			'key'   => 'internet_serices',
+			'value' => '15401',
+			'compare' => 'LIKE', 
 		],
 	],
 ];
 $providers = get_posts($query_args);
 
+
+print "<pre>";
 print_r($providers);
 
 
-
-
-  $args = array(
-	'post_type'  => 'providers',
-	'meta_query' => array(
-		array(
-			'key'   => 'internet_serices',
-			'value' => '01005',
-            'compare' => 'LIKE',
-		)
-	)
-);
-
-$providers = get_posts($args);
-
-foreach ($providers as $provider) {
-    echo get_the_title($provider->ID); // Output title
-   
-}
 
 
 

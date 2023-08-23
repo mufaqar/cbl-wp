@@ -389,53 +389,69 @@ $meta_key = 'internet_serices';
 //update_post_meta($post_id, $meta_key, $meta_value_array);
 
 
+function custom_rest_endpoint_init() {
+    register_rest_route('custom/v1', '/providers/(?P<internet_services>[\d,]+)', array(
+        'methods' => 'GET',
+        'callback' => 'custom_rest_endpoint_callback',
+    ));
+}
+add_action('rest_api_init', 'custom_rest_endpoint_init');
 
+function custom_rest_endpoint_callback($request) {
+    $params = $request->get_params();
+    $response = array();
 
+    if (!empty($params['internet_services'])) {
+        $values = explode(',', $params['internet_services']);
+        $values = array_map('trim', $values);
 
+        $meta_query = array(
+            'relation' => 'OR',
+        );
 
-function custom_providers_endpoint( $request ) {
-    $meta_values = $request->get_param( 'meta_values' );
-    if ( empty( $meta_values ) || ! is_array( $meta_values ) ) {
-        return new WP_Error( 'invalid_request', 'Invalid meta_values parameter', array( 'status' => 400 ) );
-    }
-
-    $args = array(
-        'post_type'  => 'providers',
-        'meta_query' => array(
-            array(
-                'key'     => 'internet_serices',
-                'value'   => $meta_values,
-                'compare' => 'IN',
-            ),
-        ),
-    );
-
-    $query = new WP_Query( $args );
-
-    if ( $query->have_posts() ) {
-        $providers = array();
-        while ( $query->have_posts() ) {
-            $query->the_post();
-            $provider_data = array(
-                'ID'      => get_the_ID(),
-                'title'   => get_the_title(),
-                'content' => get_the_content(),
-                // Add more fields as needed
+        foreach ($values as $value) {
+            $meta_query[] = array(
+                'key'     => 'internet_services',
+                'value'   => $value,
+                'compare' => 'LIKE',
             );
-            $providers[] = $provider_data;
         }
-        wp_reset_postdata();
-        return rest_ensure_response( $providers );
-    } else {
-        return new WP_Error( 'no_providers', 'No providers found', array( 'status' => 404 ) );
+
+        $query_args = array(
+            'post_type' => 'providers',
+            'meta_query' => $meta_query,
+        );
+
+        $providers = get_posts($query_args);
+        $response['providers'] = $providers;
     }
+
+    return rest_ensure_response($response);
 }
 
-function register_custom_endpoints() {
-    register_rest_route( 'custom-api/v1', '/providers', array(
-        'methods'  => WP_REST_Server::READABLE,
-        'callback' => 'custom_providers_endpoint',
-    ) );
-}
 
-add_action( 'rest_api_init', 'register_custom_endpoints' );
+
+//https://yourdomain.com/wp-json/custom/v1/providers/internet_services[2001,2002]
+
+
+function change_meta_keys_on_theme_activation() {
+    global $wpdb;
+
+    $old_meta_key = 'internet_serices';
+    $new_meta_key = 'internet_services';
+
+    $wpdb->update(
+        $wpdb->postmeta,
+        array('meta_key' => $new_meta_key),
+        array('meta_key' => $old_meta_key)
+    );
+}
+add_action('after_switch_theme', 'change_meta_keys_on_theme_activation');
+
+
+
+
+
+
+
+
