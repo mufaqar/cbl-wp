@@ -393,19 +393,19 @@ $meta_key = 'internet_serices';
 
 
 
-// function change_meta_keys_on_theme_activation() {
-//     global $wpdb;
+function change_meta_keys_on_theme_activation() {
+    global $wpdb;
 
-//     $old_meta_key = 'internet_serices';
-//     $new_meta_key = 'internet_services';
+    $old_meta_key = 'internet_serices';
+    $new_meta_key = 'internet_services';
 
-//     $wpdb->update(
-//         $wpdb->postmeta,
-//         array('meta_key' => $new_meta_key),
-//         array('meta_key' => $old_meta_key)
-//     );
-// }
-// add_action('after_switch_theme', 'change_meta_keys_on_theme_activation');
+    $wpdb->update(
+        $wpdb->postmeta,
+        array('meta_key' => $new_meta_key),
+        array('meta_key' => $old_meta_key)
+    );
+}
+add_action('after_switch_theme', 'change_meta_keys_on_theme_activation');
 
 
 
@@ -446,6 +446,8 @@ $meta_key = 'internet_serices';
 
 
 // http://localhost/clients/cbl/wp-json/custom/v1/providers?internet_services=2001,2002
+
+//https://cblproject.aspactglobal.com/wp-json/custom/v1/providers?internet_services=2001,2002
 
 
 
