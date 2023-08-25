@@ -209,8 +209,8 @@ function cptui_register_my_cpts() {
 		"query_var" => true,
 		"supports" => [ "title", "editor", "thumbnail" ],
 		"show_in_graphql" => true,
-		"graphql_single_name" => "Provider",
-		"graphql_plural_name" => "Providers",
+		"graphql_single_name" => "SingleProvider",
+		"graphql_plural_name" => "AllProviders",
 	];
 
 	register_post_type( "providers", $args );
@@ -272,9 +272,7 @@ function cptui_register_my_taxes() {
 	$labels = [
 		"name" => esc_html__( "City", "custom-post-type-ui" ),
 		"singular_name" => esc_html__( "City", "custom-post-type-ui" ),
-	];
-
-	
+	];	
 	$args = [
 		"label" => esc_html__( "City", "custom-post-type-ui" ),
 		"labels" => $labels,
@@ -298,9 +296,7 @@ function cptui_register_my_taxes() {
 		"graphql_single_name" => "City",
 		"graphql_plural_name" => "Cities",
 	];
-	register_taxonomy( "zone_city", [ "area_zone" ], $args );
-
-	
+	register_taxonomy( "zone_city", [ "area_zone" ], $args );	
 
 	/**
 	 * Taxonomy: State.
@@ -310,7 +306,6 @@ function cptui_register_my_taxes() {
 		"name" => esc_html__( "States Code", "custom-post-type-ui" ),
 		"singular_name" => esc_html__( "State Code", "custom-post-type-ui" ),
 	];
-
 	
 	$args = [
 		"label" => esc_html__( "State", "custom-post-type-ui" ),
@@ -377,8 +372,6 @@ function cptui_register_my_taxes_zone_name() {
 	register_taxonomy( "zone_name", [ "area_zone" ], $args );
 }
 add_action( 'init', 'cptui_register_my_taxes_zone_name' );
-
-
 /**
 	 * Taxonomy: County.
 	 */
@@ -413,20 +406,6 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 		"graphql_plural_name" => "Counties",
 	];
 	register_taxonomy( "zone_county", [ "area_zone" ], $args );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
