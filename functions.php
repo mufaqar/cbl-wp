@@ -412,9 +412,9 @@ add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 				$provider_data = array(
 					'id' => $provider->ID,
 					'title' => $provider->post_title,			
-					'pro_price' => get_post_meta($provider->ID, '_pro_price', true),
-					'pro_speed' => get_post_meta($provider->ID, '_pro_speed', true),
-					'pro_phone' => get_post_meta($provider->ID, '_pro_phone', true),
+					'pro_price' => get_post_meta($provider->ID, 'pro_price', true),
+					'pro_speed' => get_post_meta($provider->ID, 'pro_speed', true),
+					'pro_phone' => get_post_meta($provider->ID, 'pro_phone', true),
 					 'featured_image' => get_the_post_thumbnail_url($provider->ID),
 				);
 				$response['providers'][] = $provider_data;
