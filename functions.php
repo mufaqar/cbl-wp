@@ -417,27 +417,9 @@ add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 // https://cblproject.aspactglobal.com/wp-json/custom/v1/providers?internet_services=20001,20005
 
 
-
-
-
-
-
-
-
-
 $meta_value_array = array('');
 $post_id = 42467; 
 $meta_key = 'internet_services';
 //update_post_meta($post_id, $meta_key, $meta_value_array);
-
-
-
-
-
-
-
-
-
-
 
 
