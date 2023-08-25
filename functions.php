@@ -405,7 +405,22 @@ add_action('wp_enqueue_scripts', 'enqueue_theme_styles');
 				'meta_query' => $meta_query,
 			);
 			$providers = get_posts($query_args);
-			$response['providers'] = $providers;
+		
+			
+			$response['providers'] = array();
+			foreach ($providers as $provider) {
+				$provider_data = array(
+					'id' => $provider->ID,
+					'title' => $provider->post_title,			
+					'pro_price' => get_post_meta($provider->ID, '_pro_price', true),
+					'pro_speed' => get_post_meta($provider->ID, '_pro_speed', true),
+					'pro_phone' => get_post_meta($provider->ID, '_pro_phone', true),
+					 'featured_image' => get_the_post_thumbnail_url($provider->ID),
+				);
+				$response['providers'][] = $provider_data;
+			}	
+			
+			
 		}
 		return rest_ensure_response($response);
 	}
