@@ -216,6 +216,46 @@ function cptui_register_my_cpts() {
 	register_post_type( "providers", $args );
 }
 
+
+function cptui_register_my_taxes_providers_types() {
+
+	/**
+	 * Taxonomy: Types.
+	 */
+
+	$labels = [
+		"name" => esc_html__( "Types", "custom-post-type-ui" ),
+		"singular_name" => esc_html__( "Type", "custom-post-type-ui" ),
+	];
+
+	
+	$args = [
+		"label" => esc_html__( "Types", "custom-post-type-ui" ),
+		"labels" => $labels,
+		"public" => true,
+		"publicly_queryable" => true,
+		"hierarchical" => true,
+		"show_ui" => true,
+		"show_in_menu" => true,
+		"show_in_nav_menus" => true,
+		"query_var" => true,
+		"rewrite" => [ 'slug' => 'providers_types', 'with_front' => true,  'hierarchical' => true, ],
+		"show_admin_column" => true,
+		"show_in_rest" => true,
+		"show_tagcloud" => false,
+		"rest_base" => "providers_types",
+		"rest_controller_class" => "WP_REST_Terms_Controller",
+		"rest_namespace" => "wp/v2",
+		"show_in_quick_edit" => true,
+		"sort" => true,
+		"show_in_graphql" => true,
+		"graphql_single_name" => "ProviderType",
+		"graphql_plural_name" => "ProviderTypes",
+	];
+	register_taxonomy( "providers_types", [ "providers" ], $args );
+}
+add_action( 'init', 'cptui_register_my_taxes_providers_types' );
+
 add_action( 'init', 'cptui_register_my_cpts' );
 
 function cptui_register_my_cpts_area_zone() {
