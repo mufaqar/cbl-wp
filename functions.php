@@ -529,7 +529,8 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'pro_speed' => get_post_meta($provider->ID, 'pro_speed', true),
 					'pro_phone' => get_post_meta($provider->ID, 'pro_phone', true),
 					'featured_image' => get_the_post_thumbnail_url($provider->ID),
-					'providers_service_types' => wp_get_post_terms($provider->ID, 'providers_service_types', array('fields' => 'names')),					
+					'providers_service_types' => wp_get_post_terms($provider->ID, 'providers_service_types', array('fields' => 'names')),	
+					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'names')),					
 				
 				);
 				$response['providers'][] = $provider_data;
@@ -544,5 +545,5 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 
 // http://localhost/clients/cbl/wp-json/custom/v1/providers?internet_services=20001,20005
 
-// https://cblproject.aspactglobal.com/wp-json/custom/v1/providers?internet_services=20001,20005
+// https://cblproject.cablemovers.net/wp-json/custom/v1/providers?internet_services=20001,20005
 
