@@ -552,7 +552,29 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'services_info' => get_post_meta($provider->ID, 'services_info', true),
 					'featured_image' => get_the_post_thumbnail_url($provider->ID),
 					'providers_service_types' => wp_get_post_terms($provider->ID, 'providers_service_types', array('fields' => 'names')),	
-					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'names')),					
+					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'names')),
+
+					'services_info_internet_services_features' =>  get_post_meta($provider->ID, 'services_info_internet_services_features', true),
+					'services_info_internet_services_speed' =>  get_post_meta($provider->ID, 'services_info_internet_services_speed', true),
+					'services_info_internet_services_summary_features' =>  get_post_meta($provider->ID, 'services_info_internet_services_summary_features', true),
+					'services_info_internet_services_summary_speed' =>  get_post_meta($provider->ID, 'services_info_internet_services_summary_speed', true),
+
+					'services_info_tv_services_features' =>  get_post_meta($provider->ID, 'services_info_tv_services_features', true),
+					'services_info_tv_services_speed' =>  get_post_meta($provider->ID, 'services_info_tv_services_speed', true),
+					'services_info_tv_services_summary_features' =>  get_post_meta($provider->ID, 'services_info_tv_services_summary_features', true),
+					'services_info_tv_services_summary_speed' =>  get_post_meta($provider->ID, 'services_info_tv_services_summary_speed', true),
+
+
+					'services_info_internet_tv_bundles_channels' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_channels', true),
+					'services_info_internet_tv_bundles_features' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_features', true),
+					'services_info_internet_tv_bundles_speed' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_speed', true),
+					'services_info_internet_tv_bundles_summary_channel' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_summary_channel', true),
+					'services_info_internet_tv_bundles_summary_features' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_summary_features', true),
+					'services_info_internet_tv_bundles_summary_speed' =>  get_post_meta($provider->ID, 'services_info_internet_tv_bundles_summary_speed', true),
+
+
+					
+					 get_post_meta($provider->ID, 'features_block', true),
 				
 				);
 				$response['providers'][] = $provider_data;
