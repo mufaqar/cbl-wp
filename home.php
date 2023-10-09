@@ -3,33 +3,50 @@
 
 
 
+$args = array(
+    'post_type' => 'providers', // Replace with your actual post type
+    'posts_per_page' => -1,   // Retrieve all posts
+   
+'meta_query' => array(
+    'relation' => 'OR',
+    array(
+        'key' => 'internet_services',
+        'value' => '99362',  // works for int-array
+        'compare' => 'LIKE'
+    ),
+    array(
+        'key' => 'internet_services',
+        'value' => '99354',  // works for string-array
+        'compare' => 'LIKE'
+    ),
+    array(
+        'key' => 'internet_services',
+        'value' => '84341',  // works for string-array
+        'compare' => 'LIKE'
+    ),
 
-$query_args = [
-	'post_type' => 'providers', 
-	'meta_query' => [
-		'relation' => 'OR',
-		[
-			'key'   => 'internet_serices',
-			'value' => '20001',
-			'compare' => 'LIKE', 
-		],
-		[
-			'key'   => 'internet_serices',
-			'value' => '01005',
-			'compare' => 'LIKE', 
-		],
-		[
-			'key'   => 'internet_serices',
-			'value' => '15401',
-			'compare' => 'LIKE', 
-		],
-	],
-];
-$providers = get_posts($query_args);
+    
+)
+);
+
+$providers_query = new WP_Query($args);
+
+if ($providers_query->have_posts()) {
+    while ($providers_query->have_posts()) {
+        $providers_query->the_post();
+        // Display or process each provider as needed
+		
+		// Display the title of each provider
+        the_title();
+        echo '<br>';
+    }
+    wp_reset_postdata(); // Reset the post data
+} else {
+    // No providers found
+}
 
 
-print "<pre>";
-print_r($providers);
+
 
 
 
