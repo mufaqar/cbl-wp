@@ -529,6 +529,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'pro_speed' => get_post_meta($provider->ID, 'pro_speed', true),
 					'pro_phone' => get_post_meta($provider->ID, 'pro_phone', true),
 					'features' => get_post_meta($provider->ID, 'features', true),
+					'slug' => basename(get_permalink($provider->ID)),
 
 					// 'internet_plans' => get_post_meta($provider->ID, 'internet_plans', true),
 					// 'internet_plans_short' => get_post_meta($provider->ID, 'internet_plans_short', true),
