@@ -533,7 +533,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'services_info' => get_post_meta($provider->ID, 'services_info', true),
 					'featured_image' => get_the_post_thumbnail_url($provider->ID),
 					'providers_service_types' => wp_get_post_terms($provider->ID, 'providers_service_types', array('fields' => 'names')),	
-					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'slug')),
+					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'names')),			
 
 					'services_info_internet_services_features' =>  get_post_meta($provider->ID, 'services_info_internet_services_features', true),
 					'services_info_internet_services_speed' =>  get_post_meta($provider->ID, 'services_info_internet_services_speed', true),
