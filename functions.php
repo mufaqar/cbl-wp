@@ -529,31 +529,11 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'pro_speed' => get_post_meta($provider->ID, 'pro_speed', true),
 					'pro_phone' => get_post_meta($provider->ID, 'pro_phone', true),
 					'features' => get_post_meta($provider->ID, 'features', true),
-					'slug' => basename(get_permalink($provider->ID)),
-
-					// 'internet_plans' => get_post_meta($provider->ID, 'internet_plans', true),
-					// 'internet_plans_short' => get_post_meta($provider->ID, 'internet_plans_short', true),
-
-					// 'tv_plans' => get_post_meta($provider->ID, 'tv_plans', true),
-					// 'internet_plans_short' => get_post_meta($provider->ID, 'internet_plans_short', true),
-
-					// 'internet_and_phone_bundles' => get_post_meta($provider->ID, 'internet_and_phone_bundles', true),
-					// 'internet_and_phone_bundles_short' => get_post_meta($provider->ID, 'internet_and_phone_bundles_short', true),
-
-					// 'internet_and_mobile_bundles' => get_post_meta($provider->ID, 'internet_and_mobile_bundles', true),
-					// 'internet_and_mobile_bundles_short' => get_post_meta($provider->ID, 'internet_and_mobile_bundles_short', true),
-
-					// 'internet_tv_phone_bundles' => get_post_meta($provider->ID, 'internet_tv_phone_bundles', true),
-					// 'internet_tv_phone_bundles_short' => get_post_meta($provider->ID, 'internet_tv_phone_bundles_short', true),
-
-					'features_block' => get_post_meta($provider->ID, 'features_block', true),
-					'block' => get_post_meta($provider->ID, 'block', true),
-					'pros' => get_post_meta($provider->ID, 'pros', true),
-					'cons' => get_post_meta($provider->ID, 'cons', true),	
+					'slug' => basename(get_permalink($provider->ID)),				
 					'services_info' => get_post_meta($provider->ID, 'services_info', true),
 					'featured_image' => get_the_post_thumbnail_url($provider->ID),
 					'providers_service_types' => wp_get_post_terms($provider->ID, 'providers_service_types', array('fields' => 'names')),	
-					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'names')),
+					'providers_types' => wp_get_post_terms($provider->ID, 'providers_types', array('fields' => 'slug')),
 
 					'services_info_internet_services_features' =>  get_post_meta($provider->ID, 'services_info_internet_services_features', true),
 					'services_info_internet_services_speed' =>  get_post_meta($provider->ID, 'services_info_internet_services_speed', true),
@@ -575,7 +555,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 
 
 					
-					 get_post_meta($provider->ID, 'features_block', true),
+					 
 				
 				);
 				$response['providers'][] = $provider_data;
