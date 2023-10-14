@@ -620,9 +620,59 @@ function register_custom_area_zone_endpoint() {
 
 add_action( 'rest_api_init', 'register_custom_area_zone_endpoint' );
 
+
+
+
+function city_area_zone_endpoint( $request ) {
+	$params = $request->get_params();
+	$state = isset( $params['state'] ) ? $params['state'] : 'ae';
+    $args = array(
+        'post_type' => 'area_zone',
+        'posts_per_page' => -1, // Retrieve all posts
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'zone_city',
+                'field' => 'slug',
+                'terms' => $state, // California
+            ),
+        ),
+    );
+
+    $area_zones = new WP_Query( $args );
+
+    if ( $area_zones->have_posts() ) {
+        $data = array();
+
+        while ( $area_zones->have_posts() ) {
+            $area_zones->the_post();
+            $data[] = array(
+              
+                'title' => get_the_title()
+             
+            );
+        }
+
+        return rest_ensure_response( $data );
+    } else {
+        return new WP_Error( 'no_area_zones', 'No area zones found in California.', array( 'status' => 404 ) );
+    }
+}
+
+function register_city_area_zone_endpoint() {
+    register_rest_route( 'custom/v1', '/area-zones-city', array(
+        'methods'  => 'GET',
+        'callback' => 'city_area_zone_endpoint',
+    ) );
+}
+
+add_action( 'rest_api_init', 'register_city_area_zone_endpoint' );
+
+
 //custom/v1/area-zones
 
 // http://localhost/clients/cbl/wp-json/custom/v1/area-zones
 // https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones?state=ca
+
+//http://localhost/clients/cbl/wp-json/custom/v1/area-zones-city
 
 
