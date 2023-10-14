@@ -568,7 +568,61 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 
 
 
+
+
+
 // http://localhost/clients/cbl/wp-json/custom/v1/providers?internet_services=20001,20005
 
 // https://cblproject.cablemovers.net/wp-json/custom/v1/providers?internet_services=20001,20005
+
+
+function custom_area_zone_endpoint( $request ) {
+	$params = $request->get_params();
+	$state = isset( $params['state'] ) ? $params['state'] : 'ae';
+    $args = array(
+        'post_type' => 'area_zone',
+        'posts_per_page' => -1, // Retrieve all posts
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'zone_state',
+                'field' => 'slug',
+                'terms' => $state, // California
+            ),
+        ),
+    );
+
+    $area_zones = new WP_Query( $args );
+
+    if ( $area_zones->have_posts() ) {
+        $data = array();
+
+        while ( $area_zones->have_posts() ) {
+            $area_zones->the_post();
+            $data[] = array(
+                'id' => get_the_ID(),
+                'title' => get_the_title(),
+                'content' => get_the_content(),
+                // Add more fields as needed
+            );
+        }
+
+        return rest_ensure_response( $data );
+    } else {
+        return new WP_Error( 'no_area_zones', 'No area zones found in California.', array( 'status' => 404 ) );
+    }
+}
+
+function register_custom_area_zone_endpoint() {
+    register_rest_route( 'custom/v1', '/area-zones', array(
+        'methods'  => 'GET',
+        'callback' => 'custom_area_zone_endpoint',
+    ) );
+}
+
+add_action( 'rest_api_init', 'register_custom_area_zone_endpoint' );
+
+//custom/v1/area-zones
+
+// http://localhost/clients/cbl/wp-json/custom/v1/area-zones
+
 
