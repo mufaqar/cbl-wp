@@ -599,10 +599,9 @@ function custom_area_zone_endpoint( $request ) {
         while ( $area_zones->have_posts() ) {
             $area_zones->the_post();
             $data[] = array(
-                'id' => get_the_ID(),
-                'title' => get_the_title(),
-                'content' => get_the_content(),
-                // Add more fields as needed
+              
+                'title' => get_the_title()
+             
             );
         }
 
@@ -624,5 +623,6 @@ add_action( 'rest_api_init', 'register_custom_area_zone_endpoint' );
 //custom/v1/area-zones
 
 // http://localhost/clients/cbl/wp-json/custom/v1/area-zones
+// https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones?state=ca
 
 
