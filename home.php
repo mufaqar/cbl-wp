@@ -4,12 +4,11 @@
 
 
 
-// Get all states and cities from the "area_zone" custom post type.
-
+// Get all states and cities from the "area_zone" custom post type with duplicates removed.
 function get_all_states_and_cities() {
     $args = array(
         'post_type' => 'area_zone',
-        'posts_per_page' => -1,
+        'posts_per_page' => 1000,
     );
 
     $query = new WP_Query($args);
@@ -30,7 +29,12 @@ function get_all_states_and_cities() {
                     }
 
                     foreach ($city_terms as $city_term) {
-                        $states_and_cities[$state_name][] = $city_term->name;
+                        $city_name = $city_term->name;
+
+                        // Check if the city is not already in the array for the current state
+                        if (!in_array($city_name, $states_and_cities[$state_name])) {
+                            $states_and_cities[$state_name][] = $city_name;
+                        }
                     }
                 }
             }
@@ -42,20 +46,9 @@ function get_all_states_and_cities() {
     return $states_and_cities;
 }
 
-// Example usage:
-$states_and_cities = get_all_states_and_cities();
 
-if (!empty($states_and_cities)) {
-    foreach ($states_and_cities as $state => $cities) {
-        echo '<h2>State: ' . $state . '</h2>';
-        foreach ($cities as $city) {
-            echo $city . '<br>';
-        }
-        echo '<br>';
-    }
-} else {
-    echo 'No states and cities found.';
-}
+get_all_states_and_cities();
+
 
 
 

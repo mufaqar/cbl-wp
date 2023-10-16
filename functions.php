@@ -699,9 +699,13 @@ function get_states_and_cities_data() {
                     if (!isset($states_and_cities[$state_name])) {
                         $states_and_cities[$state_name] = array();
                     }
+					foreach ($city_terms as $city_term) {
+                        $city_name = $city_term->name;
 
-                    foreach ($city_terms as $city_term) {
-                        $states_and_cities[$state_name][] = $city_term->slug;
+                        // Check if the city is not already in the array for the current state
+                        if (!in_array($city_name, $states_and_cities[$state_name])) {
+                            $states_and_cities[$state_name][] = $city_name;
+                        }
                     }
                 }
             }
