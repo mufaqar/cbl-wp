@@ -673,6 +673,55 @@ add_action( 'rest_api_init', 'register_city_area_zone_endpoint' );
 // http://localhost/clients/cbl/wp-json/custom/v1/area-zones
 // https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones?state=ca
 
-//http://localhost/clients/cbl/wp-json/custom/v1/area-zones-city
+//https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones-city
+
+
+// Create a custom REST API endpoint to get states and cities
+function get_states_and_cities_data() {
+    $args = array(
+        'post_type' => 'area_zone',
+        'posts_per_page' => -1,
+    );
+
+    $query = new WP_Query($args);
+    $states_and_cities = array();
+
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            $state_terms = get_the_terms(get_the_ID(), 'zone_state');
+            $city_terms = get_the_terms(get_the_ID(), 'zone_city');
+
+            if ($state_terms && $city_terms) {
+                foreach ($state_terms as $state_term) {
+                    $state_name = $state_term->slug;
+
+                    if (!isset($states_and_cities[$state_name])) {
+                        $states_and_cities[$state_name] = array();
+                    }
+
+                    foreach ($city_terms as $city_term) {
+                        $states_and_cities[$state_name][] = $city_term->slug;
+                    }
+                }
+            }
+        }
+
+        wp_reset_postdata();
+    }
+
+    return $states_and_cities;
+}
+
+// Register the custom REST API endpoint
+function register_states_and_cities_endpoint() {
+    register_rest_route('custom/v1', '/states-cities', array(
+        'methods' => 'GET',
+        'callback' => 'get_states_and_cities_data',
+    ));
+}
+
+add_action('rest_api_init', 'register_states_and_cities_endpoint');
+
 
 
