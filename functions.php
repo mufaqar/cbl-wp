@@ -680,7 +680,7 @@ add_action( 'rest_api_init', 'register_city_area_zone_endpoint' );
 function get_states_and_cities_data() {
     $args = array(
         'post_type' => 'area_zone',
-        'posts_per_page' => -1,
+        'posts_per_page' => 1000,
     );
 
     $query = new WP_Query($args);
@@ -700,7 +700,7 @@ function get_states_and_cities_data() {
                         $states_and_cities[$state_name] = array();
                     }
 					foreach ($city_terms as $city_term) {
-                        $city_name = $city_term->name;
+                        $city_name = $city_term->slug;
 
                         // Check if the city is not already in the array for the current state
                         if (!in_array($city_name, $states_and_cities[$state_name])) {
