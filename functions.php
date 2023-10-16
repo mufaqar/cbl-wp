@@ -723,5 +723,7 @@ function register_states_and_cities_endpoint() {
 
 add_action('rest_api_init', 'register_states_and_cities_endpoint');
 
+//https://cblproject.cablemovers.net/wp-json/custom/v1/states-cities
+
 
 
