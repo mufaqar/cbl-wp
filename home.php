@@ -61,7 +61,7 @@ foreach ($params as $param) {
 }
 
 print "<pre>";
-    print_r($values);
+ 
 
 
     $meta_query = array(
@@ -86,9 +86,10 @@ print "<pre>";
     
     $response['providers'] = array();
     foreach ($providers as $provider) {
-
+       // print_r($provider);
       
         echo '<h2>'.$provider->post_title .'</h2>';
+        echo '<h2>'.$provider->post_name .'</h2>';
        
     }	
 
