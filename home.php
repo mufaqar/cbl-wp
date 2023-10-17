@@ -76,7 +76,7 @@ print "<pre>";
     }
     $query_args = array(
         'post_type' => 'providers',
-       'meta_query' => $meta_query,
+      // 'meta_query' => $meta_query,
        'posts_per_page' => -1
     );
 
