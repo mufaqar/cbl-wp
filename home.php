@@ -4,54 +4,93 @@
 
 
 
-// Get all states and cities from the "area_zone" custom post type with duplicates removed.
-function get_all_states_and_cities() {
-    $args = array(
-        'post_type' => 'area_zone',
-        'posts_per_page' => 1000,
-    );
 
-    $query = new WP_Query($args);
-    $states_and_cities = array();
 
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $state_terms = get_the_terms(get_the_ID(), 'zone_state');
-            $city_terms = get_the_terms(get_the_ID(), 'zone_city');
+// // Function to generate a random string
+function generateRandomString($length) {
+    $characters = 'abcdefghijklmnopqrstuvwxyz';
+    $randomString = '';
+    $max = strlen($characters) - 1;
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $max)];
+    }
+    return $randomString;
+}
+$args = array(
+    'post_type' => 'providers', // Adjust the post type as needed
+    'posts_per_page' => -1, // Retrieve all posts
+);
 
-            if ($state_terms && $city_terms) {
-                foreach ($state_terms as $state_term) {
-                    $state_name = $state_term->name;
+$query = new WP_Query($args);
 
-                    if (!isset($states_and_cities[$state_name])) {
-                        $states_and_cities[$state_name] = array();
-                    }
-
-                    foreach ($city_terms as $city_term) {
-                        $city_name = $city_term->name;
-
-                        // Check if the city is not already in the array for the current state
-                        if (!in_array($city_name, $states_and_cities[$state_name])) {
-                            $states_and_cities[$state_name][] = $city_name;
-                        }
-                    }
-                }
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $values = get_post_meta( $post_id, 'internet_services', true);
+              $length = 5;
+            $modifiedValues = array();
+            foreach ($values as $value) {
+                $randomKey = generateRandomString($length);
+                $modifiedValues[$randomKey] = $value;
             }
-        }
-
-        wp_reset_postdata();
+            update_post_meta($post_id, 'internet_services', $modifiedValues);
     }
 
-    return $states_and_cities;
+    wp_reset_postdata();
 }
 
 
-get_all_states_and_cities();
 
 
 
 
+
+
+
+
+
+$params = array('99403,20001,01108,36608');
+
+$values = array();
+
+foreach ($params as $param) {
+    $exploded_values = explode(',', $param);
+    $trimmed_values = array_map('trim', $exploded_values);
+    $values = array_merge($values, $trimmed_values);
+}
+
+print "<pre>";
+    print_r($values);
+
+
+    $meta_query = array(
+        'relation' => 'OR',
+    );
+    foreach ($values as $value) {
+        $meta_query[] = array(
+            'key'     => 'internet_services',
+            'value'   => $value,
+            'compare' => 'LIKE',
+        );
+    }
+    $query_args = array(
+        'post_type' => 'providers',
+       'meta_query' => $meta_query,
+       'posts_per_page' => -1
+    );
+
+    print_r($query_args);
+    $providers = get_posts($query_args);
+
+    
+    $response['providers'] = array();
+    foreach ($providers as $provider) {
+
+      
+        echo '<h2>'.$provider->post_title .'</h2>';
+       
+    }	
 
 
 ?>

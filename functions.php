@@ -488,6 +488,9 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 	register_taxonomy( "zone_county", [ "area_zone" ], $args );
 
 
+	// API 
+
+
 
 	function custom_rest_endpoint_init() {
 		register_rest_route('custom/v1', '/providers', array(
@@ -728,6 +731,9 @@ function register_states_and_cities_endpoint() {
 add_action('rest_api_init', 'register_states_and_cities_endpoint');
 
 //https://cblproject.cablemovers.net/wp-json/custom/v1/states-cities
+
+
+
 
 
 
