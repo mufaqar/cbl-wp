@@ -519,6 +519,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 			$query_args = array(
 				'post_type' => 'providers',
 				'meta_query' => $meta_query,
+				'posts_per_page' => -1
 			);
 			$providers = get_posts($query_args);
 		
