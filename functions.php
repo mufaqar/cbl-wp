@@ -494,7 +494,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 
 	function custom_rest_endpoint_init() {
 		register_rest_route('custom/v1', '/providers', array(
-			'methods' => 'GET',
+			'methods' => 'POST',
 			'callback' => 'custom_rest_endpoint_callback',
 		));
 	}
