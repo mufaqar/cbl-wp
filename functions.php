@@ -548,7 +548,7 @@ add_action( 'init', 'cptui_register_my_taxes_zone_name' );
 					'services_info_tv_services_features' =>  get_post_meta($provider->ID, 'services_info_tv_services_features', true),
 					'services_info_tv_services_speed' =>  get_post_meta($provider->ID, 'services_info_tv_services_speed', true),
 					'services_info_tv_services_price' =>  get_post_meta($provider->ID, 'services_info_tv_services_price', true),
-					'services_info_tv_services_nprice' =>  get_post_meta($provider->ID, 'services_info_tv_services_price', true),
+					'services_info_tv_services_tvprice' =>  get_post_meta($provider->ID, 'services_info_tv_services_price', true),
 					'services_info_tv_services_summary_features' =>  get_post_meta($provider->ID, 'services_info_tv_services_summary_features', true),
 					'services_info_tv_services_summary_speed' =>  get_post_meta($provider->ID, 'services_info_tv_services_summary_speed', true),
 
