@@ -679,14 +679,13 @@ add_action( 'rest_api_init', 'register_city_area_zone_endpoint' );
 // http://localhost/clients/cbl/wp-json/custom/v1/area-zones
 // https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones?state=ca
 
-//https://cblproject.cablemovers.net/wp-json/custom/v1/area-zones-city
-
 
 // Create a custom REST API endpoint to get states and cities
-function get_states_and_cities_data() {
+function get_states_and_cities_data($request) {
     $args = array(
         'post_type' => 'area_zone',
-        'posts_per_page' => 1000,
+        'posts_per_page' => $request['posts_per_page'],
+		'offset' => $request['offset'],
     );
 
     $query = new WP_Query($args);
@@ -733,11 +732,13 @@ function register_states_and_cities_endpoint() {
 
 add_action('rest_api_init', 'register_states_and_cities_endpoint');
 
-//https://cblproject.cablemovers.net/wp-json/custom/v1/states-cities
+//https://cblproject.cablemovers.net/wp-json/custom/v1/states-cities?posts_per_page=200&offset=100
 
 
 
-
+// $post_id = 3627;  
+// $internet_services_value = [];
+//add_post_meta($post_id, 'internet_services', $internet_services_value, true);
 
 
 
